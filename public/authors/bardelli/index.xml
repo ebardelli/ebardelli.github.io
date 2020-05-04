@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emanuele Bardelli</title>
+    <link>//bardelli.me/authors/bardelli/</link>
+      <atom:link href="//bardelli.me/authors/bardelli/index.xml" rel="self" type="application/rss+xml" />
+    <description>Emanuele Bardelli</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2016-2020 Emanuele Bardelli</copyright>
+    <image>
+      <url>//bardelli.me/authors/bardelli/avatar_hude50d09409e4b49a8b2d8e570c0907f7_197599_270x270_fill_q75_box_center.jpg</url>
+      <title>Emanuele Bardelli</title>
+      <link>//bardelli.me/authors/bardelli/</link>
+    </image>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geometry | Emanuele Bardelli</title>
+    <link>//bardelli.me/tags/geometry/</link>
+      <atom:link href="//bardelli.me/tags/geometry/index.xml" rel="self" type="application/rss+xml" />
+    <description>Geometry</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2016-2020 Emanuele Bardelli</copyright><lastBuildDate>Sat, 24 Mar 2018 15:22:12 -0400</lastBuildDate>
+    <image>
+      <url>//bardelli.me/images/icon_hu2bf28d78f02b92b373883197d3b342a6_3233_512x512_fill_box_center_2.png</url>
+      <title>Geometry</title>
+      <link>//bardelli.me/tags/geometry/</link>
+    </image>
+    
+    <item>
+      <title>Geometry Reasoning and Instructional Practices - GRIP</title>
+      <link>//bardelli.me/project/grip/</link>
+      <pubDate>Sat, 24 Mar 2018 15:22:12 -0400</pubDate>
+      <guid>//bardelli.me/project/grip/</guid>
+      <description>&lt;p&gt;GRIP (Geometry, Reasoning, and Instructional Practices) is a research group in the School of Education at the University of Michigan. In addition to LessonSketch, GRIP studies a wide range of issues related to the teaching and learning of secondary geometry.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
