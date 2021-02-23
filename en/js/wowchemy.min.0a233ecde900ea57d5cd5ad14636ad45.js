@@ -1,6 +1,6 @@
 /*! Wowchemy v5.0.0-beta.3 | https://wowchemy.com/ */
 /*! Copyright 2016-present George Cushen (https://georgecushen.com/) */
-/*! License: https://github.com/wowchemy/wowchemy-hugo-modules/blob/master/LICENSE.md */
+/*! License: https://github.com/wowchemy/wowchemy-hugo-modules/blob/main/LICENSE.md */
 
 ;
 (()=>{/*!medium-zoom 1.0.6 | MIT License | https://github.com/francoischalifour/medium-zoom*/var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}

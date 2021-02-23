@@ -1,6 +1,6 @@
 /*! Wowchemy v5.0.0-beta.3 | https://wowchemy.com/ */
 /*! Copyright 2016-present George Cushen (https://georgecushen.com/) */
-/*! License: https://github.com/wowchemy/wowchemy-hugo-modules/blob/master/LICENSE.md */
+/*! License: https://github.com/wowchemy/wowchemy-hugo-modules/blob/main/LICENSE.md */
 
 ;
 (()=>{var body=document.body;function getThemeMode(){return parseInt(localStorage.getItem("wcTheme")||2);}
