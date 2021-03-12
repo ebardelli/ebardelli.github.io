@@ -11,7 +11,7 @@
           Object.prototype.hasOwnProperty.call(b2, c2) && (d2[c2] = b2[c2]);
       }
       return d2;
-    }, g = function(a2) {
+    }, e = function(a2) {
       return a2.tagName === "IMG";
     }, V = function(a2) {
       return NodeList.prototype.isPrototypeOf(a2);
@@ -22,7 +22,7 @@
       return b2.substr(-4).toLowerCase() === ".svg";
     }, A = function(a2) {
       try {
-        return Array.isArray(a2) ? a2.filter(g) : V(a2) ? [].slice.call(a2).filter(g) : f(a2) ? [a2].filter(g) : typeof a2 == "string" ? [].slice.call(document.querySelectorAll(a2)).filter(g) : [];
+        return Array.isArray(a2) ? a2.filter(e) : V(a2) ? [].slice.call(a2).filter(e) : f(a2) ? [a2].filter(e) : typeof a2 == "string" ? [].slice.call(document.querySelectorAll(a2)).filter(e) : [];
       } catch (a3) {
         throw new TypeError("The provided selector is invalid.\nExpects a CSS selector, a Node element, a NodeList or an array.\nSee: https://github.com/francoischalifour/medium-zoom");
       }
@@ -159,21 +159,24 @@
         return b2.original;
       }, g2 = [], l2 = [], i2 = false, p2 = 0, d2 = F2, b2 = {original: null, zoomed: null, zoomedHd: null, template: null}, k2, e2;
       return Object.prototype.toString.call(j2) === "[object Object]" ? d2 = j2 : (j2 || typeof j2 == "string") && n2(j2), d2 = a({margin: 0, background: "#fff", scrollOffset: 40, container: null, template: null}, d2), k2 = X(d2.background), document.addEventListener("click", E2), document.addEventListener("keyup", C2), document.addEventListener("scroll", D2), window.addEventListener("resize", h2), e2 = {open: q2, close: h2, toggle: o2, update: z2, clone: y2, attach: n2, detach: w2, on: s2, off: r2, getOptions: t2, getImages: u2, getZoomedImage: v2}, e2;
-    }, R, Q, P, t, q, b, h, i, e, d, w, z, C, W, v;
+    }, R, Q, P, t, E, d, h, p, g, b, w, z, C, W, v;
     function T(c2, d2) {
       var e2, b2, a2;
       if (d2 === void 0 && (d2 = {}), e2 = d2.insertAt, !c2 || typeof document == "undefined")
         return;
       b2 = document.head || document.getElementsByTagName("head")[0], a2 = document.createElement("style"), a2.type = "text/css", e2 === "top" ? b2.firstChild ? b2.insertBefore(a2, b2.firstChild) : b2.appendChild(a2) : b2.appendChild(a2), a2.styleSheet ? a2.styleSheet.cssText = c2 : a2.appendChild(document.createTextNode(c2));
     }
-    R = ".medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}", T(R), Q = x, P = true, t = "production", q = false;
-    function I() {
+    R = ".medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}", T(R), Q = x, P = true, t = "production", E = false;
+    function q(b2 = false) {
       let a2 = [];
       [].push.apply(a2, document.getElementsByClassName("language-mermaid"));
-      for (let b2 = 0; b2 < a2.length; b2++) {
-        let d2 = a2[b2], c2 = document.createElement("div");
-        c2.innerHTML = d2.innerHTML, c2.classList.add("mermaid"), d2.parentNode.replaceWith(c2);
+      for (let d2 = 0; d2 < a2.length; d2++) {
+        let e2 = a2[d2], c2 = document.createElement("div");
+        c2.innerHTML = e2.innerHTML, c2.classList.add("mermaid"), b2 && window.mermaid.mermaidAPI.render(`mermaid-${d2}`, c2.textContent, function(a3) {
+          c2.innerHTML = a3;
+        }), e2.parentNode.replaceWith(c2);
       }
+      console.debug(`Processed ${a2.length} Mermaid code blocks`);
     }
     function r(a2, d2) {
       const b2 = a2.getBoundingClientRect(), e2 = {height: a2.clientHeight, width: a2.clientWidth}, c2 = d2.getBoundingClientRect(), f2 = c2.top >= b2.top && c2.bottom <= b2.top + e2.height;
@@ -186,19 +189,19 @@
       };
       b2();
     }
-    b = document.body;
+    d = document.body;
     function u() {
       return parseInt(localStorage.getItem("wcTheme") || 2);
     }
     function l() {
       return Boolean(window.wc.darkLightEnabled);
     }
-    function H() {
+    function I() {
       if (!l())
         return console.debug("User theming disabled."), {isDarkTheme: window.wc.isSiteThemeDark, themeMode: window.wc.isSiteThemeDark ? 1 : 0};
       console.debug("User theming enabled.");
-      let a2, c2 = u();
-      switch (console.debug(`User's theme variation: ${c2}`), c2) {
+      let a2, b2 = u();
+      switch (console.debug(`User's theme variation: ${b2}`), b2) {
         case 0:
           a2 = false;
           break;
@@ -209,9 +212,9 @@
           window.matchMedia("(prefers-color-scheme: dark)").matches ? a2 = true : window.matchMedia("(prefers-color-scheme: light)").matches ? a2 = false : a2 = window.wc.isSiteThemeDark;
           break;
       }
-      return a2 && !b.classList.contains("dark") ? (console.debug("Applying Wowchemy dark theme"), document.body.classList.add("dark")) : !a2 && b.classList.contains("dark") && (console.debug("Applying Wowchemy light theme"), document.body.classList.remove("dark")), {isDarkTheme: a2, themeMode: c2};
+      return a2 && !d.classList.contains("dark") ? (console.debug("Applying Wowchemy dark theme"), document.body.classList.add("dark")) : !a2 && d.classList.contains("dark") && (console.debug("Applying Wowchemy light theme"), document.body.classList.remove("dark")), {isDarkTheme: a2, themeMode: b2};
     }
-    function p(b2) {
+    function j(b2) {
       if (!l()) {
         console.debug("Cannot change theme - user theming disabled.");
         return;
@@ -228,9 +231,9 @@
           localStorage.setItem("wcTheme", "2"), window.matchMedia("(prefers-color-scheme: dark)").matches ? a2 = true : window.matchMedia("(prefers-color-scheme: light)").matches ? a2 = false : a2 = window.wc.isSiteThemeDark, console.debug("User changed theme variation to Auto.");
           break;
       }
-      j(a2, b2);
+      o(a2, b2);
     }
-    function E(d2) {
+    function F(d2) {
       let a2 = document.querySelector(".js-set-theme-light"), b2 = document.querySelector(".js-set-theme-dark"), c2 = document.querySelector(".js-set-theme-auto");
       if (a2 === null)
         return;
@@ -246,33 +249,33 @@
           break;
       }
     }
-    function j(a2, h2 = 2, c2 = false) {
-      const d2 = document.querySelector("link[title=hl-light]"), e2 = document.querySelector("link[title=hl-dark]"), f2 = d2 !== null || e2 !== null, g2 = document.querySelector("script[title=mermaid]") !== null;
-      E(h2);
+    function o(a2, h2 = 2, b2 = false) {
+      const c2 = document.querySelector("link[title=hl-light]"), e2 = document.querySelector("link[title=hl-dark]"), f2 = c2 !== null || e2 !== null, g2 = document.querySelector("script[title=mermaid]") !== null;
+      F(h2);
       const i2 = new CustomEvent("wcThemeChange", {detail: {isDarkTheme: () => a2}});
-      if (document.dispatchEvent(i2), !c2) {
-        if (a2 === false && !b.classList.contains("dark") || a2 === true && b.classList.contains("dark"))
+      if (document.dispatchEvent(i2), !b2) {
+        if (a2 === false && !d.classList.contains("dark") || a2 === true && d.classList.contains("dark"))
           return;
       }
-      a2 === false ? (c2 || (Object.assign(document.body.style, {opacity: 0, visibility: "visible"}), s(document.body, 600)), b.classList.remove("dark"), f2 && (console.debug("Setting HLJS theme to light"), d2 && (d2.disabled = false), e2 && (e2.disabled = true)), g2 && (console.debug("Initializing Mermaid with light theme"), c2 ? window.mermaid.initialize({startOnLoad: true, theme: "default", securityLevel: "loose"}) : location.reload())) : a2 === true && (c2 || (Object.assign(document.body.style, {opacity: 0, visibility: "visible"}), s(document.body, 600)), b.classList.add("dark"), f2 && (console.debug("Setting HLJS theme to dark"), d2 && (d2.disabled = true), e2 && (e2.disabled = false)), g2 && (console.debug("Initializing Mermaid with dark theme"), c2 ? window.mermaid.initialize({startOnLoad: true, theme: "dark", securityLevel: "loose"}) : location.reload()));
+      a2 === false ? (b2 || (Object.assign(document.body.style, {opacity: 0, visibility: "visible"}), s(document.body, 600)), d.classList.remove("dark"), f2 && (console.debug("Setting HLJS theme to light"), c2 && (c2.disabled = false), e2 && (e2.disabled = true)), g2 && (console.debug("Initializing Mermaid with light theme"), b2 ? (window.mermaid.initialize({startOnLoad: false, theme: "default", securityLevel: "loose"}), q(true)) : location.reload())) : a2 === true && (b2 || (Object.assign(document.body.style, {opacity: 0, visibility: "visible"}), s(document.body, 600)), d.classList.add("dark"), f2 && (console.debug("Setting HLJS theme to dark"), c2 && (c2.disabled = true), e2 && (e2.disabled = false)), g2 && (console.debug("Initializing Mermaid with dark theme"), b2 ? (window.mermaid.initialize({startOnLoad: false, theme: "dark", securityLevel: "loose"}), q(true)) : location.reload()));
     }
-    function G(c2) {
+    function H(c2) {
       if (!l())
         return;
       const d2 = c2.matches;
       console.debug(`OS dark mode preference changed to ${d2 ? "\u{1F312} on" : "\u2600\uFE0F off"}.`);
       let b2 = u(), a2;
-      b2 === 2 && (window.matchMedia("(prefers-color-scheme: dark)").matches ? a2 = true : window.matchMedia("(prefers-color-scheme: light)").matches ? a2 = false : a2 = window.wc.isSiteThemeDark, j(a2, b2));
+      b2 === 2 && (window.matchMedia("(prefers-color-scheme: dark)").matches ? a2 = true : window.matchMedia("(prefers-color-scheme: light)").matches ? a2 = false : a2 = window.wc.isSiteThemeDark, o(a2, b2));
     }
     console.debug(`Environment: ${t}`);
-    function k() {
+    function i() {
       let b2 = $("#navbar-main"), a2 = b2.outerHeight();
       return console.debug("Navbar height: " + a2), a2;
     }
-    function o(a2, b2 = 0) {
+    function k(a2, b2 = 0) {
       if (a2 = typeof a2 == "undefined" || typeof a2 == "object" ? decodeURIComponent(window.location.hash) : a2, $(a2).length) {
         a2 = "#" + $.escapeSelector(a2.substring(1));
-        let c2 = Math.ceil($(a2).offset().top - k());
+        let c2 = Math.ceil($(a2).offset().top - i());
         $("body").addClass("scrolling"), $("html, body").animate({scrollTop: c2}, b2, function() {
           $("body").removeClass("scrolling");
         });
@@ -281,35 +284,35 @@
     }
     function D() {
       let a2 = $("body"), b2 = a2.data("bs.scrollspy");
-      b2 && (b2._config.offset = k(), a2.data("bs.scrollspy", b2), a2.scrollspy("refresh"));
+      b2 && (b2._config.offset = i(), a2.data("bs.scrollspy", b2), a2.scrollspy("refresh"));
     }
-    function F() {
+    function G() {
       if (window.history.replaceState) {
         let a2 = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.hash;
         window.history.replaceState({path: a2}, "", a2);
       }
     }
-    if (window.addEventListener("hashchange", o), $("#navbar-main li.nav-item a.nav-link, .js-scroll").on("click", function(b2) {
+    if (window.addEventListener("hashchange", k), $("#navbar-main li.nav-item a.nav-link, .js-scroll").on("click", function(b2) {
       let a2 = this.hash;
       if (this.pathname === window.location.pathname && a2 && $(a2).length && $(".js-widget-page").length > 0) {
         b2.preventDefault();
-        let c2 = Math.ceil($(a2).offset().top - k());
+        let c2 = Math.ceil($(a2).offset().top - i());
         $("html, body").animate({scrollTop: c2}, 800);
       }
     }), $(document).on("click", ".navbar-collapse.show", function(a2) {
       let b2 = $(a2.target).is("a") ? $(a2.target) : $(a2.target).parent();
       b2.is("a") && b2.attr("class") != "dropdown-toggle" && $(this).collapse("hide");
-    }), h = {}, d = $("#container-publications"), d.length) {
-      d.isotope({itemSelector: ".isotope-item", percentPosition: true, masonry: {columnWidth: ".grid-sizer"}, filter: function() {
-        let a3 = $(this), b2 = !i || a3.text().match(i), c2 = !e || a3.is(e);
+    }), h = {}, b = $("#container-publications"), b.length) {
+      b.isotope({itemSelector: ".isotope-item", percentPosition: true, masonry: {columnWidth: ".grid-sizer"}, filter: function() {
+        let a3 = $(this), b2 = !p || a3.text().match(p), c2 = !g || a3.is(g);
         return b2 && c2;
       }});
       let a2 = $(".filter-search").keyup(J(function() {
-        i = new RegExp(a2.val(), "gi"), d.isotope();
+        p = new RegExp(a2.val(), "gi"), b.isotope();
       }));
       $(".pub-filters").on("change", function() {
-        let b2 = $(this), a3 = b2[0].getAttribute("data-filter-group");
-        if (h[a3] = this.value, e = y(h), d.isotope(), a3 === "pubtype") {
+        let c2 = $(this), a3 = c2[0].getAttribute("data-filter-group");
+        if (h[a3] = this.value, g = y(h), b.isotope(), a3 === "pubtype") {
           let a4 = $(this).val();
           a4.substr(0, 9) === ".pubtype-" ? window.location.hash = a4.substr(9) : window.location.hash = "";
         }
@@ -333,12 +336,12 @@
       return b2;
     }
     function M() {
-      if (!d.length)
+      if (!b.length)
         return;
-      let a2 = window.location.hash.replace("#", ""), b2 = "*";
-      a2 != "" && !isNaN(a2) && (b2 = ".pubtype-" + a2);
-      let c2 = "pubtype";
-      h[c2] = b2, e = y(h), d.isotope(), $(".pubtype-select").val(b2);
+      let a2 = window.location.hash.replace("#", ""), c2 = "*";
+      a2 != "" && !isNaN(a2) && (c2 = ".pubtype-" + a2);
+      let d2 = "pubtype";
+      h[d2] = c2, g = y(h), b.isotope(), $(".pubtype-select").val(c2);
     }
     function N() {
       if ($("#map").length) {
@@ -367,7 +370,7 @@
       });
     }
     function n() {
-      $("body").hasClass("searching") ? ($("[id=search-query]").blur(), $("body").removeClass("searching compensate-for-scrollbar"), F(), $("#fancybox-style-noscroll").remove()) : (!$("#fancybox-style-noscroll").length && document.body.scrollHeight > window.innerHeight && ($("head").append('<style id="fancybox-style-noscroll">.compensate-for-scrollbar{margin-right:' + (window.innerWidth - document.documentElement.clientWidth) + "px;}</style>"), $("body").addClass("compensate-for-scrollbar")), $("body").addClass("searching"), $(".search-results").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 200), $("#search-query").focus());
+      $("body").hasClass("searching") ? ($("[id=search-query]").blur(), $("body").removeClass("searching compensate-for-scrollbar"), G(), $("#fancybox-style-noscroll").remove()) : (!$("#fancybox-style-noscroll").length && document.body.scrollHeight > window.innerHeight && ($("head").append('<style id="fancybox-style-noscroll">.compensate-for-scrollbar{margin-right:' + (window.innerWidth - document.documentElement.clientWidth) + "px;}</style>"), $("body").addClass("compensate-for-scrollbar")), $("body").addClass("searching"), $(".search-results").css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 200), $("#search-query").focus());
     }
     function m() {
       $(".carousel").each(function() {
@@ -388,15 +391,15 @@
       });
     }
     $(document).ready(function() {
-      K(), I(), P && hljs.initHighlighting();
-      let {isDarkTheme: c2, themeMode: d2} = H();
-      j(c2, d2, true);
+      K();
+      let {isDarkTheme: c2, themeMode: d2} = I();
+      o(c2, d2, true), P && hljs.initHighlighting();
       let a2 = document.querySelector(".docs-links .active"), b2 = document.querySelector(".docs-links");
       a2 && b2 && r(b2, a2);
     }), $(window).on("load", function() {
       D();
       let c2 = document.querySelectorAll(".projects-container"), g2 = c2.length;
-      window.location.hash && g2 === 0 && o(decodeURIComponent(window.location.hash), 0);
+      window.location.hash && g2 === 0 && k(decodeURIComponent(window.location.hash), 0);
       let d2 = document.querySelector(".docs-toc .nav-link.active"), e2 = document.querySelector(".docs-toc");
       d2 && e2 && r(e2, d2);
       let b2 = {};
@@ -422,7 +425,7 @@
         });
       });
       function h2() {
-        f2++, f2 === g2 && (console.debug(`All Portfolio Isotope instances loaded.`), window.location.hash && o(decodeURIComponent(window.location.hash), 0));
+        f2++, f2 === g2 && (console.debug(`All Portfolio Isotope instances loaded.`), window.location.hash && k(decodeURIComponent(window.location.hash), 0));
       }
       $(".pub-filters-select") && M(), $(".js-cite-modal").click(function(c3) {
         c3.preventDefault();
@@ -453,19 +456,19 @@
         }
         if (a3.key === "/") {
           let b3 = document.hasFocus() && document.activeElement !== document.body && document.activeElement !== document.documentElement && document.activeElement || null, c3 = b3 instanceof HTMLInputElement || b3 instanceof HTMLTextAreaElement;
-          q && !c3 && (a3.preventDefault(), n());
+          E && !c3 && (a3.preventDefault(), n());
         }
-      }), q && $(".js-search").click(function(a3) {
+      }), E && $(".js-search").click(function(a3) {
         a3.preventDefault(), n();
       }), $('[data-toggle="tooltip"]').tooltip();
     }), w = document.querySelector(".js-set-theme-light"), z = document.querySelector(".js-set-theme-dark"), C = document.querySelector(".js-set-theme-auto"), w && z && C && (w.addEventListener("click", (a2) => {
-      a2.preventDefault(), p(0);
+      a2.preventDefault(), j(0);
     }), z.addEventListener("click", (a2) => {
-      a2.preventDefault(), p(1);
+      a2.preventDefault(), j(1);
     }), C.addEventListener("click", (a2) => {
-      a2.preventDefault(), p(2);
+      a2.preventDefault(), j(2);
     })), W = window.matchMedia("(prefers-color-scheme: dark)"), W.addEventListener("change", (a2) => {
-      G(a2);
+      H(a2);
     }), window.addEventListener("load", m), window.addEventListener("resize", m), window.addEventListener("orientationchange", m), $("body").on("mouseenter mouseleave", ".dropdown", function(c2) {
       var a2 = $(c2.target).closest(".dropdown"), b2 = $(".dropdown-menu", a2);
       a2.addClass("show"), b2.addClass("show"), setTimeout(function() {
