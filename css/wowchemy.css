@@ -1,6 +1,6 @@
-/*! Wowchemy v5.3.0 | https://wowchemy.com/ */
+/*! Wowchemy v5.4.0 | https://wowchemy.com/ */
 /*! Copyright 2016-present George Cushen (https://georgecushen.com/) */
-/*! License: https://github.com/wowchemy/wowchemy-hugo-modules/blob/main/LICENSE.md */
+/*! License: https://github.com/wowchemy/wowchemy-hugo-themes/blob/main/LICENSE.md */
 /* Set Bootstrap variables */
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
@@ -7191,7 +7191,7 @@ a.text-dark:hover, a.text-dark:focus {
  *  Wowchemy: The Website Builder for Hugo
  *  Designed by @GeorgeCushen
  *  https://wowchemy.com/
- *  License: https://github.com/wowchemy/wowchemy-hugo-modules/blob/main/LICENSE.md
+ *  License: https://github.com/wowchemy/wowchemy-hugo-themes/blob/main/LICENSE.md
  **************************************************/
 /* Wowchemy Helpers */
 /*************************************************
@@ -8091,6 +8091,23 @@ a.summary-link {
 /*************************************************
  *  Navigation bar
  **************************************************/
+.headroom {
+  will-change: transform;
+  transition: transform 200ms linear; }
+
+.headroom--pinned {
+  transform: translateY(0%); }
+
+.headroom--unpinned {
+  transform: translateY(-100%); }
+
+.header--fixed {
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  left: 0;
+  top: 0; }
+
 .dropdown-menu {
   background-color: #00274c !important;
   color: #fff !important;
@@ -8101,11 +8118,6 @@ a.summary-link {
   background: #00274c;
   box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.11);
   font-size: 16.17px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
   padding: 0 1rem; }
   .navbar .nav-item {
     position: relative; }
@@ -8537,14 +8549,16 @@ ul.toc-top {
   padding-left: 0.8rem; }
 
 #TableOfContents li {
-  display: block; }
+  display: block;
+  margin-bottom: 8px; }
 
 #TableOfContents li a,
 .toc-top li a {
   display: block;
-  padding: 0.125rem 1.5rem;
+  padding: 0 1.5rem;
   color: rgba(0, 0, 0, 0.65);
-  font-size: 0.7rem; }
+  line-height: 1.75;
+  font-size: 16px; }
 
 .dark #TableOfContents li a,
 .dark .toc-top li a {
@@ -8756,6 +8770,27 @@ html[dir='rtl'] body {
   top: 0.6rem;
   overflow-x: hidden; }
 
+.ais-Hits-item,
+.ais-InfiniteHits-item {
+  background: unset;
+  box-shadow: unset;
+  padding: unset; }
+
+.ais-SearchBox-form::before {
+  all: unset;
+  height: 1rem;
+  left: 1rem;
+  margin-top: -0.5rem;
+  position: absolute;
+  top: 50%;
+  width: 1rem;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f002';
+  font-size: 100%;
+  opacity: 0.7;
+  line-height: 1; }
+
 .dark #search-query {
   background-color: #23252f; }
 
@@ -8928,6 +8963,14 @@ html[dir='rtl'] body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover; }
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  max-height: initial; }
+
+.bg-video.flip {
+  transform: rotateY(180deg); }
 
 /* Create a parallax-like scrolling effect on desktop browsers. */
 .parallax {
@@ -9109,6 +9152,30 @@ ul.ul-edu li .description p.course {
 ul.ul-edu li .description p.institution {
   font-size: 0.75rem;
   color: rgba(0, 0, 0, 0.6); }
+
+.avatar-wrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto; }
+  .avatar-wrapper .avatar-emoji {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 100%;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    font-size: 20px;
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0, 0, 0, 0.04); }
+
+.dark .avatar-emoji {
+  background-color: #000;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04), 0 0 1px rgba(255, 255, 255, 0.96); }
 
 /*************************************************
  *  Contact
