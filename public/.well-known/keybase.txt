@@ -1,0 +1,146 @@
+==================================================================
+https://keybase.io/bardelli
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://bardelli.netlify.app
+  * I am bardelli (https://keybase.io/bardelli) on keybase.
+  * I have a public key with fingerprint A460 2249 3620 8A46 0171  6FF6 96F2 4267 060F BCEA
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01014198ae183d6a0900343ce74ae1c34ba5c89cd3af482562dbe1b8738160a2cc420a",
+      "fingerprint": "a460224936208a4601716ff696f24267060fbcea",
+      "host": "keybase.io",
+      "key_id": "96f24267060fbcea",
+      "kid": "01014198ae183d6a0900343ce74ae1c34ba5c89cd3af482562dbe1b8738160a2cc420a",
+      "uid": "a990170b2983a0c8ee8073ccd0012819",
+      "username": "bardelli"
+    },
+    "service": {
+      "hostname": "bardelli.netlify.app",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1615326140,
+  "expire_in": 157680000,
+  "prev": "bf847ef64ee413926365b88c3be828ff1840b5866c9c22cc492996eb5bc4e19d",
+  "seqno": 9,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUm1QVGUY3VVY+VCB4SMljLxAg8Xg/dp3713MXAYQAmGyGQTUWe7He5e7u+wu
+u1dgXTAqmdGSBnAUxhlRKCAmEgcjycAGZiJpU5mIYDCJwEgBY8pRa3Kge5n80/Sz
+9887z5lzznOeZ57aDWtVfurTvyebNEF982rvPVZVuHvhugdh7bwb0XsQC1z9oJWH
+LsloEXlEj6AYipEYTTEQowgeMCiNogRJcFBHyhBHkCyj5Sia4wlGIClcC3CehRhL
+6QgKAyiDcxyJowySgAiizQSdDqdok2RbhgQojpM0AXCUUgpMhwFBADQQcBIHOhSg
+AstBRVhkdykKORzLuGCiaJcxuTCuxvsP/v+c+9CqHUPTckSUxWmKYFCOgpBCdQTH
+8SiK4RRGK0QXdNqYYiizWcbJQ6tVRCoTEBktFTmoLFaZ5F+MRBuUrKLgTmQcDtnD
+4bRLds5ulRlFkuRw6RUHye1QJGWQNf5jZmRFGy/vU1aUQqdLtNsQPSYzOUlU3DGA
+aQkcYCSagMByh+iERlFhaHWAQuWn9IGliL4QYQWK1EEBkBCSGEHjgABalqI4goUU
+TgkCRpEoq6UA4GgOV3ZC4zQNIKtlORJiNI8o85XY7IielnMyJjmmSzTZGOmQEyKV
+AcfXED4qtZ9qS8RWnw8KkQzw/Dtp6hL7o6c36LtGOUBVgH/wUySvOWiZ/OtaYGZq
+/V7z1JWrVRr93J1OfXgP9mFBbZBpMPf9N1vazjyzuWDK7L1zcPfQ6fcO5381dD/9
+Se7Ju/E7HjTsm/Gf8ekO+tjufJB+u6RlefL226cmPsnq5+JiAjJf2tMeMlNATMwa
+zNk1sVJ3Z2NmWlRHqkYqYeNvbZrIKN3ZHHP5u77H6Q2vP3cs8udH+dj8eE3YjRNb
+bnxr7WpBL8bmnYSh3/85v3yg7N2maM9Ns0H9U0/qGVvDcocr279/ady1VJj7sC9t
+KuIXQ87oXHyKLqj388CZsKz97GL8iwOhfgOt1fqmuvunYl3tYp1muPeVy198Ghjf
+MsBf/NHqRoZrI+7mTXhqrvygNpygPhqx2C5t3Lzu4dbzAx392+KOjSR7c4Pb2he9
+Y437FjeqW7zbvV2GkLDWI0d/7fx6qvze0eHlc5bi8LTp66+x+bOe2V3+OyBHlGOt
+vVUvP6timhePIPUhno6VpJ79Y1l1FdwfC7UXmrrO6892D7ZZet3XPuuI3BC5c+zJ
+uSjmjSTj2W9m3dKtFDAdU3nVvK46cNS6KRofij6QPV24vmplZG3VZMnK3G+8JU4j
+Jpq2m3WxRZoLPWh2VE7gZPHNCrhrfVn3pb3Bh+MSKkL9jBGOV6tBeHKrf4qaOyis
+5GwZqxx8XLOwVL/nhYzuxlHfqrbKoW2+SW9NGYjgL8f/Bg==
+=ieM7
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bardelli
+
+==================================================================
+
+==================================================================
+https://keybase.io/bardelli
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ebardelli.com
+  * I am bardelli (https://keybase.io/bardelli) on keybase.
+  * I have a public key with fingerprint A460 2249 3620 8A46 0171  6FF6 96F2 4267 060F BCEA
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01014198ae183d6a0900343ce74ae1c34ba5c89cd3af482562dbe1b8738160a2cc420a",
+      "fingerprint": "a460224936208a4601716ff696f24267060fbcea",
+      "host": "keybase.io",
+      "key_id": "96f24267060fbcea",
+      "kid": "01014198ae183d6a0900343ce74ae1c34ba5c89cd3af482562dbe1b8738160a2cc420a",
+      "uid": "a990170b2983a0c8ee8073ccd0012819",
+      "username": "bardelli"
+    },
+    "service": {
+      "hostname": "ebardelli.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1628353849,
+  "expire_in": 157680000,
+  "prev": "7aab301cd5878b990b5cfa746c8b443b293b505f944ef54a49174191ef5f3397",
+  "seqno": 10,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUmtMFFcY3eX9KCAlIsZQcIxUWlzmtfMARUu02matshLqA13uzNxZpiwzy+4s
+xQKKbcFKsVqUpbUCsSHR2kBoU5AWQo0RbSoCVQMYW9QWfKVAJdYHFu0MkX/92fvn
+5jv3nHO/8+U7EOZrCDJ6J9PtARGdd43n73AGEN6aVoxwirADSSlG8uDMBR0CdKu2
+PElAUhAUQzESYxkAMYYQKICyKEqQBA9pUoN4guSAmWdYXiCASDK4mcIFDmIcQxMM
+RqEA53kSRwGShIiSbIcup0uSVc0WkBSK4yRLUDjK6AVGY5QoUiwl4iRO0SiFihwP
+dWGu4tYVWnMccEOTpGiYVthm2vsP/v/ct2fGDrCs1iLK4SxDAJRnIGRQmuB5AUUx
+nMFYneiGLhnkQ43NAZcAHQ4JKU1CNLRQ4qE+WD3JcwacpZh4JV8TO12KqvCKQ3vK
+VVWnO0WXqjucOvddyNmeu9g4SRa0QWqKQuhyS4qMpGAak1cl3RajcIYwEwzJJiGw
+yCm5oE3SGWaaYlDt6P/AQs2SBoAj0C0YL5gZmuG0cJyZFwFNUjzDkSSh5SQ4M2oW
+WZKEopkEJIvR2jgxrRAJgqURPViBrGjmmqsK7JqpW7LLQPW4IFIasteH8DMYgwyx
+0Qv9GnOQN6j4yteNBcqD2e3z99FXzxASPGcW6cyKeCbVtHmrvz5Uv2bTysRs5+Oz
+RYOWbcPZuXXdi6pMu5LOLTnZ9FP2zcWU6Jp8kRp/5VdLXFtga9O6G2GD4/M7WuZ7
+Mq0x49M+jWf+CDHerVrUPBG3cXKLd2Sj7wdTLdszYzvGNuFMV8+8vJi500EdwbaA
+KDSjtSrmfsn3V20lNSX+YSuNniWR5+DIyF+WSOV0W+RxExaBPKwCBWD45oXi6LMe
+33lF7WNZ5ftzMg43cAd2XeptXmot/S7A8NlyzJIE4m5fe+jd2R/c3XB6MGH8iJ1K
+TEsvPnldvRJrfTvlxHWhelmqY+xYd/qV8KiLBWunT42jzewtcM8hX5L3DRjn3Jnq
+i5+49k/qjUlrQ4P98r6r6+9VdEncreqSj1eP9tTZ+35j1xWV1NWPJT9+4WJopfto
+7xkrHhzYl9uS25r1coxlb83WzFf3/HD/SZppWzrnHeh8lBE+lHMouaaz/Zt2ZoWv
+tLry7wsBm/On+789ctCSbC07evidwPPlb44tu408DX4r4ZfyTwZXBUb/vvtYRbr6
+zH/5UH3l4tDEht6s0LaDTeoaxm/D+4FlkENqX/sxwd0dMOpEweaeUdOHn/dXXo4a
++nTV0+NhP39pPLFQ3Dr3o68A9QhEr18q11YseG9iw4MOf+8XA4bijrL2ohV/mvpf
+cqbJ27sWNHqoVNvO3VG1w94p5VT8k4GQfwE=
+=nMmq
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/bardelli
+
+==================================================================
+
