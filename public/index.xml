@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Data Science → Education Policy</title><link>/</link><description>Recent content in Home on Data Science → Education Policy</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 29 Mar 2025 22:31:36 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Beyond Maps and Data: The Human Side of School Boundary Decisions</title><link>/posts/beyond-maps-and-data-the-human-side-of-school-boundary-decisions/</link><pubDate>Sat, 29 Mar 2025 22:31:36 +0000</pubDate><guid>/posts/beyond-maps-and-data-the-human-side-of-school-boundary-decisions/</guid><description>&lt;p>In the &lt;a href="__GHOST_URL__/technical-aspects-of-redrawing-school-attendance-boundaries/">previous blog post&lt;/a>, I explored the technical aspects of our boundary redrawing process—data organization, geospatial analysis techniques, and optimization algorithms—and how we tackled them in my school district.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Data Science → Education Policy</title><link>/</link><description>Recent content in Home on Data Science → Education Policy</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 29 Mar 2025 22:31:36 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Beyond Maps and Data: The Human Side of School Boundary Decisions</title><link>/posts/beyond-maps-and-data-the-human-side-of-school-boundary-decisions/</link><pubDate>Sat, 29 Mar 2025 22:31:36 +0000</pubDate><guid>/posts/beyond-maps-and-data-the-human-side-of-school-boundary-decisions/</guid><description>&lt;p>In the &lt;a href="/posts/technical-aspects-of-redrawing-school-attendance-boundaries/">previous blog post&lt;/a>, I explored the technical aspects of our boundary redrawing process—data organization, geospatial analysis techniques, and optimization algorithms—and how we tackled them in my school district.&lt;/p>
 &lt;p>Yet, beyond the code and maps lies the heart of school consolidation: the students, families, and communities affected by these decisions.&lt;/p>
 &lt;p>In this post, I&amp;rsquo;ll delve into the policy considerations that drive effective school boundary development, revealing the human dimensions of data-driven decision-making and offering insights for future initiatives.&lt;/p>
 &lt;h2 id="community-engagement-more-than-just-town-halls">&lt;strong>Community Engagement: More Than Just Town Halls&lt;/strong>&lt;/h2>
@@ -203,10 +203,9 @@
 &lt;p>The US Census Bureau maintains large geospatial databases of the US to support their decennial census. TIGER/Line shapefiles collect the census&amp;rsquo; land features, such as roads, rivers, and lakes, as well as areas such as counties, census tracts, and census blocks. The &lt;a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">2024 TIGER/Line Shapefiles&lt;/a> were released on September 25, 2024.&lt;/p>
 &lt;p>We will use the 2020 Census blocks in this analysis.&lt;/p>
 &lt;p>These are available for download through the Census ftp server:&lt;/p>
-&lt;pre>&lt;code>wget 'https://www2.census.gov/geo/tiger/TIGER2024/TABBLOCK20/tl_2024_06_tabblock20.zip'
-unzip tl_2024_06_tabblock20.zip -d census_blocks
-&lt;/code>&lt;/pre>
-&lt;p>Download US Census blocks&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">wget &lt;span class="s1">&amp;#39;https://www2.census.gov/geo/tiger/TIGER2024/TABBLOCK20/tl_2024_06_tabblock20.zip&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">unzip tl_2024_06_tabblock20.zip -d census_blocks
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Download US Census blocks&lt;/p>
 &lt;h3 id="california-school-district-shapefiles">California School District Shapefiles&lt;/h3>
 &lt;p>The California Department of Education also provides (a more modest) number of geospatial datasets. However, these are not as easily accessible as the census datasets.&lt;/p>
 &lt;p>You will need to manually download the geospatial database of California&amp;rsquo;s districts from this &lt;a href="https://gis.data.ca.gov/datasets/CDEGIS::california-school-district-areas-2023-24/explore?location=36.948239%2C-119.002226%2C6.36">map&lt;/a>. Download the database in GeoJSON format.&lt;/p>
@@ -214,25 +213,22 @@ unzip tl_2024_06_tabblock20.zip -d census_blocks
 &lt;h3 id="setting-up-spatial">Setting Up spatial&lt;/h3>
 &lt;p>We will use the &lt;code>spatial&lt;/code> extension in DuckDB to conduct our geospatial analysis. While this is an official DuckDB extension maintained by the DuckDB developers, it doesn&amp;rsquo;t come automatically installed with DuckDB.&lt;/p>
 &lt;p>These two commands will install and load the extension:&lt;/p>
-&lt;pre>&lt;code>INSTALL spatial;
-LOAD spatial;
-&lt;/code>&lt;/pre>
-&lt;p>Load spatial in DuckDB&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">INSTALL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">spatial&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">LOAD&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">spatial&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Load spatial in DuckDB&lt;/p>
 &lt;p>Installing the extension is only needed once. After that, you will only need to use the &lt;code>LOAD&lt;/code>command to activate &lt;code>spatial&lt;/code> within the current DuckDB process.&lt;/p>
 &lt;h3 id="loading-the-data">Loading the Data&lt;/h3>
 &lt;p>We are going to load the data as views in DuckDB. This allows us to access the data just-in-time when running the analysis and only uses a minimal amount of additional storage on top of the original databases on disk to store some metadata.&lt;/p>
 &lt;p>The TIGER/Line data comes in a &lt;code>dbf&lt;/code>, which spatial can read natively:&lt;/p>
-&lt;pre>&lt;code>create view census_blocks as
-select *
-from st_read('census_blocks/tl_2024_06_tabblock20.dbf');
-&lt;/code>&lt;/pre>
-&lt;p>Load US Census blocks&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">create&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">view&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">st_read&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;census_blocks/tl_2024_06_tabblock20.dbf&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Load US Census blocks&lt;/p>
 &lt;p>To load the California district data, you will have to read the &lt;code>geojson&lt;/code> file you:&lt;/p>
-&lt;pre>&lt;code>create view ca_districts as
-select *
-from st_read('DistrictAreas2324_-2286165690798712574.geojson');
-&lt;/code>&lt;/pre>
-&lt;p>Load CA district map&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">create&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">view&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">st_read&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;DistrictAreas2324_-2286165690798712574.geojson&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Load CA district map&lt;/p>
 &lt;h2 id="analysis">Analysis&lt;/h2>
 &lt;p>Now that we have the &lt;code>census_blocks&lt;/code> and &lt;code>ca_districts&lt;/code> views ready, we can move on to the analysis. The plan has three steps:&lt;/p>
 &lt;ul>
@@ -244,58 +240,56 @@ from st_read('DistrictAreas2324_-2286165690798712574.geojson');
 &lt;p>The first step in the analysis plan requires us to identify which census blocks are part of individual districts&amp;rsquo; attendance boundaries.&lt;/p>
 &lt;p>We are going to leverage two functions in &lt;code>spatial&lt;/code>: &lt;code>st_Contains&lt;/code> and &lt;code>st_Point&lt;/code>. The first function checks if a geometry contains a point or another geometry. In our case, we will use it to check if a district boundary contains a census block&amp;rsquo;s centroid. The second function builds a spatial point using the centroid coordinates that the Census Bureau provides for each block.&lt;/p>
 &lt;p>We can use these functions as part of a &lt;code>join&lt;/code> statement to identify which blocks are part of a California district:&lt;/p>
-&lt;pre>&lt;code>create view districts_blocks as
-select
-ca_districts.CDSCode,
-census_blocks.GEOIDFQ20
-from ca_districts
-join census_blocks
-on st_Contains(
-ca_districts.geom,
-st_Point(
-census_blocks.INTPTLON20::DOUBLE,
-census_blocks.INTPTLAT20::DOUBLE));
-&lt;/code>&lt;/pre>
-&lt;p>Combine US Blocks and CA District map&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">create&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">view&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">districts_blocks&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">CDSCode&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GEOIDFQ20&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">join&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">on&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">st_Contains&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">geom&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">st_Point&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">INTPTLON20&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">DOUBLE&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">INTPTLAT20&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">DOUBLE&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Combine US Blocks and CA District map&lt;/p>
 &lt;p>This will save a reference view that identifies which census blocks are part of which school district.&lt;/p>
 &lt;h3 id="over--and-under-enrolled">Over- and Under-Enrolled&lt;/h3>
 &lt;p>We can estimate the expected enrollment in each district by regressing total enrollment on the population residing within a district attendance boundary.&lt;/p>
 &lt;p>This model is rather naive and doesn&amp;rsquo;t take into consideration that California allows for elementary districts that serve K-8 grades, high districts that serve 9-12 grades, and unified districts that serve K-12 grades.&lt;/p>
 &lt;p>We can conduct this simple OLS regression with:&lt;/p>
-&lt;pre>&lt;code>with pop as (
-select
-ca_districts.DistrictName,
-ca_districts.DistrictType,
-ca_districts.LocaleDistrict,
-ca_districts.EnrollTotal,
-ca_districts.EnrollNonCharter,
-ca_districts.EnrollCharter,
-sum(census_blocks.POP20) as ResidentPopulation,
-from districts_blocks
-join ca_districts on ca_districts.CDSCode = districts_blocks.CDSCode
-join census_blocks on census_blocks.GEOIDFQ20 = districts_blocks.GEOIDFQ20
-group by all
-),
-reg as (
-select
-regr_intercept(EnrollTotal, ResidentPopulation) as intercept,
-regr_slope(EnrollTotal, ResidentPopulation) as slope,
-from pop
-group by all
-)
-select
-DistrictName,
-DistrictType,
-EnrollTotal,
-(intercept + slope * ResidentPopulation)::INT as ExpectedEnrollment,
-EnrollTotal - ExpectedEnrollment as EnrollDeviation,
-from pop
-cross join reg
-order by EnrollDeviation;
-&lt;/code>&lt;/pre>
-&lt;p>Regress student enrollment on population&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">with&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pop&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DistrictName&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DistrictType&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">LocaleDistrict&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">EnrollTotal&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">EnrollNonCharter&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">EnrollCharter&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">sum&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">POP20&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ResidentPopulation&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">districts_blocks&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">join&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">on&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ca_districts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">CDSCode&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">districts_blocks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">CDSCode&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">join&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">on&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">census_blocks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GEOIDFQ20&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">districts_blocks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GEOIDFQ20&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">group&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">all&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">reg&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">regr_intercept&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">EnrollTotal&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ResidentPopulation&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">intercept&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">regr_slope&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">EnrollTotal&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ResidentPopulation&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">slope&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pop&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">group&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">all&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">DistrictName&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">DistrictType&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">EnrollTotal&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">intercept&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">slope&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ResidentPopulation&lt;/span>&lt;span class="p">)::&lt;/span>&lt;span class="nb">INT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ExpectedEnrollment&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">EnrollTotal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ExpectedEnrollment&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">EnrollDeviation&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">pop&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">cross&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">join&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">reg&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">order&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">EnrollDeviation&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Regress student enrollment on population&lt;/p>
 &lt;p>We find that these are the five most under-enrolled districts in California:&lt;/p>
-&lt;pre>&lt;code>┌──────────────────────────┬─────────────────┐
+&lt;pre tabindex="0">&lt;code>┌──────────────────────────┬─────────────────┐
 │ DistrictName │ EnrollDeviation │
 ├──────────────────────────┼─────────────────┤
 │ San Francisco Unified │ -40221 │
@@ -304,10 +298,9 @@ order by EnrollDeviation;
 │ Kern High │ -29534 │
 │ Chaffey Joint Union High │ -23620 │
 └──────────────────────────┴─────────────────┘
-&lt;/code>&lt;/pre>
-&lt;p>Under-enrollment estimates&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>Under-enrollment estimates&lt;/p>
 &lt;p>and the five most over-enrolled districts in California:&lt;/p>
-&lt;pre>&lt;code>┌─────────────────────────────┬─────────────────┐
+&lt;pre tabindex="0">&lt;code>┌─────────────────────────────┬─────────────────┐
 │ DistrictName │ EnrollDeviation │
 ├─────────────────────────────┼─────────────────┤
 │ Fresno Unified │ 28006 │
@@ -316,8 +309,7 @@ order by EnrollDeviation;
 │ Corona-Norco Unified │ 19411 │
 │ San Bernardino City Unified │ 19333 │
 └─────────────────────────────┴─────────────────┘
-&lt;/code>&lt;/pre>
-&lt;p>Over-enrollment estiamtes&lt;/p>
+&lt;/code>&lt;/pre>&lt;p>Over-enrollment estiamtes&lt;/p>
 &lt;hr>
 &lt;h2 id="further-reading">Further Reading&lt;/h2>
 &lt;p>The team at Motherduck has written a &lt;a href="https://motherduck.com/blog/geospatial-for-beginner-duckdb-spatial-motherduck/">blog post&lt;/a> that covers the history of GIS software and give some more examples on how to use DuckDB for geospatial analysis. Give it a read if you want to find out more details about geospatial work with&lt;/p></description></item><item><title>About this site</title><link>/pages/about/</link><pubDate>Thu, 02 Jan 2025 12:25:44 +0000</pubDate><guid>/pages/about/</guid><description>&lt;p>&lt;img src="/images/2025/board_meeting.jpeg" alt="About this site">&lt;/p>
